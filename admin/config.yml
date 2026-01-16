@@ -1,0 +1,100 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Media files will be stored in the repo
+media_folder: "images"
+public_folder: "/images"
+
+# Site settings and content collections
+collections:
+  # Site-wide settings
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "_data/settings.json"
+        fields:
+          - { label: "Business Name", name: "businessName", widget: "string", default: "Central Oregon Storage" }
+          - { label: "Phone Number", name: "phone", widget: "string", default: "(541) 555-0147" }
+          - { label: "Email", name: "email", widget: "string", default: "hello@centraloregonstorage.com" }
+          - { label: "Street Address", name: "streetAddress", widget: "string", default: "62500 Highway 97 North" }
+          - { label: "City", name: "city", widget: "string", default: "Bend" }
+          - { label: "State", name: "state", widget: "string", default: "OR" }
+          - { label: "Zip Code", name: "zip", widget: "string", default: "97701" }
+
+  # Homepage content
+  - name: "homepage"
+    label: "Homepage"
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "_data/hero.json"
+        fields:
+          - { label: "Headline Line 1", name: "headline1", widget: "string", default: "Your Space." }
+          - { label: "Headline Line 2 (Highlighted)", name: "headline2", widget: "string", default: "Your Terms." }
+          - { label: "Subheadline", name: "subheadline", widget: "text", default: "Climate-controlled units, RV parking, and boat storage in the heart of Central Oregon. 24/7 secure access with no long-term contracts." }
+          - { label: "Primary Button Text", name: "primaryCta", widget: "string", default: "View Unit Sizes & Pricing" }
+          - { label: "Secondary Button Text", name: "secondaryCta", widget: "string", default: "Get a Free Quote" }
+          - label: "Trust Indicators"
+            name: "trustIndicators"
+            widget: "list"
+            max: 4
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+      - name: "about"
+        label: "About Section"
+        file: "_data/about.json"
+        fields:
+          - { label: "Section Title", name: "title", widget: "string", default: "Local Storage for Local People" }
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            max: 3
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+  # Storage Units
+  - name: "units"
+    label: "Storage Units"
+    folder: "_data/units"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Unit Name", name: "name", widget: "string" }
+      - { label: "Dimensions", name: "dimensions", widget: "string", hint: "e.g., 10' × 10'" }
+      - { label: "Square Footage", name: "sqft", widget: "string", hint: "e.g., 100 sq ft" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Monthly Price", name: "price", widget: "number" }
+      - { label: "Is Popular?", name: "popular", widget: "boolean", default: false }
+      - { label: "Display Order", name: "order", widget: "number", default: 0 }
+
+  # RV & Boat Storage Options
+  - name: "outdoor"
+    label: "RV & Boat Storage"
+    folder: "_data/outdoor"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Storage Type", name: "name", widget: "string" }
+      - { label: "Size/Capacity", name: "capacity", widget: "string" }
+      - { label: "Starting Price", name: "price", widget: "number" }
+      - { label: "Price Suffix", name: "priceSuffix", widget: "string", default: "/mo" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  # Features/Benefits
+  - name: "features"
+    label: "Features"
+    folder: "_data/features"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Feature Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Display Order", name: "order", widget: "number", default: 0 }
