@@ -728,5 +728,18 @@
             });
         });
     </script>
-</body>
+<script>
+  // Load CMS content
+  fetch('/_data/hero.json')
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      const h1 = document.querySelector('h1');
+      if (h1 && data.headline1) {
+        h1.innerHTML = `<span class="block">${data.headline1}</span><span class="block text-timber-400">${data.headline2 || ''}</span>`;
+      }
+      const sub = document.querySelector('h1 + p');
+      if (sub && data.subheadline) sub.textContent = data.subheadline;
+    })
+    .catch(() => console.log('Using default content'));
+</script></body>
 </html>
